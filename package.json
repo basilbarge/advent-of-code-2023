@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+	"test": "jest",
     "day11": "node day_1/part_1.js",
     "day12": "node day_1/part_2.js",
     "day21": "node day_2/part_1.js",

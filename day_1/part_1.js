@@ -1,34 +1,32 @@
-const testInput = [
-	'1abc2',
-	'pqr3stu8vwx',
-	'a1b2c3d4e5f',
-	'treb7uchet',
-]
+const { join } = require('path')
+const { readFileSync } = require('node:fs')
 
-const fs = require('node:fs')
-const path = require('path')
+function solve(inputPath) {
+	const data = readFileSync(inputPath, 'utf8')
+	const input = data.split('\n').filter(n => n)
 
-const inputPath = path.join(".", "day_1", "input.txt")
-const data = fs.readFileSync(inputPath, 'utf8')
-const input = data.split('\n').filter(n => n)
+	const numString = Array(input.length).fill('');
 
-const numString = Array(input.length).fill('');
-
-input.map((word, idx) => {
-	word.split('').map(letter => {
-		if (!isNaN(parseInt(letter))) {
-			numString[idx] += letter
-		}
+	input.map((word, idx) => {
+		word.split('').map(letter => {
+			if (!isNaN(parseInt(letter))) {
+				numString[idx] += letter
+			}
+		})
 	})
-})
 
-const nums = numString.map(numString => {
-	const finalNum = numString[0] + numString[numString.length - 1]
-	return parseInt(finalNum)
-})
+	const nums = numString.map(numString => {
+		const finalNum = numString[0] + numString[numString.length - 1]
+		return parseInt(finalNum)
+	})
 
-const final = nums.reduce((total, current) => {
-	return total + current
-}, 0)
+	return nums.reduce((total, current) => {
+		return total + current
+	}, 0)
+}
 
-console.log(final)
+const inputPath = join(".", "day_1", "part_1_input.txt")
+
+console.log(solve(inputPath))
+
+module.exports = solve
