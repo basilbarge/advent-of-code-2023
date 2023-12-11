@@ -8,7 +8,7 @@ const testInput = [
 const fs = require('node:fs')
 
 const data = fs.readFileSync('./input.txt', 'utf8')
-const input = data.split('\n')
+const input = data.split('\n').filter(n => n)
 
 const numString = Array(input.length).fill('');
 
@@ -25,4 +25,8 @@ const nums = numString.map(numString => {
 	return parseInt(finalNum)
 })
 
-console.log(nums.reduce((total, current) => total += current, 0))
+const final = nums.reduce((total, current) => {
+	return total + current
+}, 0)
+
+console.log(final)
