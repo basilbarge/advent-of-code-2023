@@ -5,16 +5,19 @@ const testInput = [
 	'treb7uchet',
 ]
 
-const num = Array(testInput.length).fill('');
+const numString = Array(testInput.length).fill('');
 
 testInput.map((word, idx) => {
 	word.split('').map(letter => {
-		console.log(letter)
-		if (parseInt(letter) !== NaN) {
-			console.log('here')
-			num[idx] += letter
+		if (!isNaN(parseInt(letter))) {
+			numString[idx] += letter
 		}
 	})
 })
 
-console.log(num);
+const nums = numString.map(numString => {
+	const finalNum = numString[0] + numString[numString.length - 1]
+	return parseInt(finalNum)
+})
+
+console.log(nums.reduce((total, current) => total += current, 0))
