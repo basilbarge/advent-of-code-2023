@@ -5,9 +5,14 @@ const testInput = [
 	'treb7uchet',
 ]
 
-const numString = Array(testInput.length).fill('');
+const fs = require('node:fs')
 
-testInput.map((word, idx) => {
+const data = fs.readFileSync('./input.txt', 'utf8')
+const input = data.split('\n')
+
+const numString = Array(input.length).fill('');
+
+input.map((word, idx) => {
 	word.split('').map(letter => {
 		if (!isNaN(parseInt(letter))) {
 			numString[idx] += letter
