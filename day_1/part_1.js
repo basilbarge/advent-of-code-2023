@@ -6,8 +6,10 @@ const testInput = [
 ]
 
 const fs = require('node:fs')
+const path = require('path')
 
-const data = fs.readFileSync('./input.txt', 'utf8')
+const inputPath = path.join(".", "day_1", "input.txt")
+const data = fs.readFileSync(inputPath, 'utf8')
 const input = data.split('\n').filter(n => n)
 
 const numString = Array(input.length).fill('');
