@@ -25,7 +25,7 @@ function solve(inputPath) {
 	}, 0)
 }
 
-const inputPath = join(".", "day_1", "part_1_input.txt")
+const inputPath = join('.', 'day_1', 'part_1', 'part_1_input.txt')
 
 console.log(solve(inputPath))
 
