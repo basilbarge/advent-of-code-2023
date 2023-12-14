@@ -49,15 +49,24 @@ function solve(textInputPath) {
 
 
 	const answers = []
-	inputs.map((numObjects) => {
-		const firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
+	inputs.map((numObjects, idx) => {
+		let firstNumber = {}
+		if (numObjects.length > 1) {
+			firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
+		} else { 
+			firstNumber.value = '0'
+		}
 		const secondNumber = numObjects.sort((a, b) => b.index - a.index)[0]
-		const number = firstNumber.value + secondNumber.value
+		const number = firstNumber.value  + secondNumber.value
+		console.log(idx)
+		console.log(number)
 
 		answers.push(parseInt(number))
 	})
 
 	return answers.reduce((total, current) => {
+		console.log(`Total: ${total}`)
+		console.log(`Current: ${current}`)
 		return total + current
 	}, 0)
 }
