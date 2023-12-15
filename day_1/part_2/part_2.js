@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { readFileSync, writeFileSync } = require('fs')
+const { readFileSync } = require('fs')
 
 function solve(textInputPath) {
 	const input = readFileSync(textInputPath, 'utf8').split('\n').filter(n => n)
@@ -17,7 +17,7 @@ function solve(textInputPath) {
 
 	const inputs = parseNumbersWithinString(input, numbers)
 
-	const answers = parseFinalAnswers(inputs, numbers)
+	const answers = parseFinalAnswers(inputs)
 
 	return answers.reduce((total, current) => {
 		return total + current
@@ -29,7 +29,7 @@ function parseFinalAnswers(numbersWithinString) {
 	numbersWithinString.map(numObjects => {
 		const firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
 		const secondNumber = numObjects.sort((a, b) => b.index - a.index)[0]
-		const number = firstNumber.value  + secondNumber.value
+		const number = firstNumber.value + secondNumber.value
 
 		answers.push(parseInt(number))
 	})
@@ -56,12 +56,17 @@ function parseNumbersWithinString(inputString, spelledNumbers) {
 
 		spelledNumbers.map((number) => {
 			if (strings.includes(number)) {
-				numbersWithinString.push(
-					{
-						value: (spelledNumbers.indexOf(number) + 1).toString(),
-						index: strings.indexOf(number),
-					}
-				)
+				let stringIndex = strings.indexOf(number)
+				while (stringIndex !== -1) {
+					numbersWithinString.push(
+						{
+							value: (spelledNumbers.indexOf(number) + 1).toString(),
+							index: stringIndex,
+						}
+					)
+
+					stringIndex = strings.indexOf(number, stringIndex + 1)
+				}
 			}
 		})
 
@@ -71,7 +76,7 @@ function parseNumbersWithinString(inputString, spelledNumbers) {
 	return inputs
 }
 
-const input = join('.', 'day_1', 'part_2', 'edge_case_test_input.txt')
+const input = join('.', 'day_1', 'part_2', 'input.txt')
 
 console.log(solve(input))
 
