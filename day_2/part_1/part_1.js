@@ -8,17 +8,19 @@ function solve(problemInput) {
 
 		return {
 			gameNum: gameNumber,
-			rounds: gameData.split(';').map((round) => round.trim().split(',').reduce((roundData, currentData) => {
-				const trimmedEntry = currentData.trim()
-				return {
-					...roundData,
-					[trimmedEntry.split(' ')[1]]: trimmedEntry.split(' ')[0]
-				}
-			}, {}))
+			rounds: gameData.split(';').map((round) => parseRoundToObject(round))
 		}
 	})
+}
 
-	console.log(games[0].rounds)
+function parseRoundToObject(roundData) {
+	roundData.trim().split(',').reduce((data, currentData) => {
+		const trimmedEntry = currentData.trim()
+		return {
+			...data,
+			[trimmedEntry.split(' ')[1]]: trimmedEntry.split(' ')[0]
+		}
+	}, {})
 }
 
 solve(input)
