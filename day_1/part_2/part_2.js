@@ -15,10 +15,32 @@ function solve(textInputPath) {
 		'nine'
 	]
 
+	const inputs = parseNumbersWithinString(input, numbers)
+
+	const answers = parseFinalAnswers(inputs, numbers)
+
+	return answers.reduce((total, current) => {
+		return total + current
+	}, 0)
+}
+
+function parseFinalAnswers(numbersWithinString) {
+	const answers = []
+	numbersWithinString.map(numObjects => {
+		const firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
+		const secondNumber = numObjects.sort((a, b) => b.index - a.index)[0]
+		const number = firstNumber.value  + secondNumber.value
+
+		answers.push(parseInt(number))
+	})
+
+	return answers
+}
+
+function parseNumbersWithinString(inputString, spelledNumbers) {
 	let inputs = []
 
-	//TODO: Loops are pushing empty items for some reason
-	input.map((strings) => {
+	inputString.map((strings) => {
 		const numbersWithinString = []
 
 		strings.split("").map((char, charIndex) => {
@@ -32,47 +54,29 @@ function solve(textInputPath) {
 			}
 		})
 
-		numbers.map((number) => {
+		spelledNumbers.map((number) => {
 			if (strings.includes(number)) {
 				numbersWithinString.push(
 					{
-						value: (numbers.indexOf(number) + 1).toString(),
+						value: (spelledNumbers.indexOf(number) + 1).toString(),
 						index: strings.indexOf(number),
 					}
 				)
 			}
 		})
 
-		//console.log(numbersWithinString)
 		inputs.push(numbersWithinString)
 	})
 
-
-	const answers = []
-	inputs.map((numObjects, idx) => {
-		let firstNumber = {}
-		if (numObjects.length > 1) {
-			firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
-		} else { 
-			firstNumber.value = '0'
-		}
-		const secondNumber = numObjects.sort((a, b) => b.index - a.index)[0]
-		const number = firstNumber.value  + secondNumber.value
-		console.log(idx)
-		console.log(number)
-
-		answers.push(parseInt(number))
-	})
-
-	return answers.reduce((total, current) => {
-		console.log(`Total: ${total}`)
-		console.log(`Current: ${current}`)
-		return total + current
-	}, 0)
+	return inputs
 }
 
-const input = join('.', 'day_1', 'part_2', 'input.txt')
+const input = join('.', 'day_1', 'part_2', 'edge_case_test_input.txt')
 
 console.log(solve(input))
 
-module.exports = solve
+module.exports = {
+	solve,
+	parseNumbersWithinString,
+	parseFinalAnswers
+}
