@@ -1,7 +1,7 @@
-const { join } = require('path')
-const { readFileSync } = require('fs')
+import { join } from 'path'
+import { readFileSync } from 'fs'
 
-function solve(textInputPath) {
+export function solve(textInputPath) {
 	const input = readFileSync(textInputPath, 'utf8').split('\n').filter(n => n)
 	const numbers = [
 		'one',
@@ -24,7 +24,7 @@ function solve(textInputPath) {
 	}, 0)
 }
 
-function parseFinalAnswers(numbersWithinString) {
+export function parseFinalAnswers(numbersWithinString) {
 	const answers = []
 	numbersWithinString.map(numObjects => {
 		const firstNumber = numObjects.sort((a, b) => a.index - b.index)[0]
@@ -37,7 +37,7 @@ function parseFinalAnswers(numbersWithinString) {
 	return answers
 }
 
-function parseNumbersWithinString(inputString, spelledNumbers) {
+export function parseNumbersWithinString(inputString, spelledNumbers) {
 	let inputs = []
 
 	inputString.map((strings) => {
@@ -79,9 +79,3 @@ function parseNumbersWithinString(inputString, spelledNumbers) {
 const input = join('.', 'day_1', 'part_2', 'input.txt')
 
 console.log(solve(input))
-
-module.exports = {
-	solve,
-	parseNumbersWithinString,
-	parseFinalAnswers
-}

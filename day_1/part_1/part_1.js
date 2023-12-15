@@ -1,5 +1,5 @@
-const { join } = require('path')
-const { readFileSync } = require('node:fs')
+import { join } from 'path'
+import { readFileSync } from 'node:fs'
 
 function solve(inputPath) {
 	const data = readFileSync(inputPath, 'utf8')
@@ -29,4 +29,4 @@ const inputPath = join('.', 'day_1', 'part_1', 'input.txt')
 
 console.log(solve(inputPath))
 
-module.exports = solve
+export default solve

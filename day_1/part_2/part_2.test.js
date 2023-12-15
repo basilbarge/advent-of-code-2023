@@ -1,6 +1,6 @@
-const { join } = require('path')
+import { join } from 'path'
 const test_input = join('.', 'day_1', 'part_2', 'test_input.txt')
-const { solve, parseNumbersWithinString, parseFinalAnswers } = require('./part_2')
+import { solve, parseNumbersWithinString, parseFinalAnswers } from './part_2'
 
 
 const numbers = [
