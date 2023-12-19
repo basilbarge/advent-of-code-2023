@@ -18,15 +18,23 @@ export function solve(problemInput) {
 		}
 	})
 
-	const possibleGames = games
+	const possibleGames = getPossibleGames(games)
+	return possibleGames
+}
+
+export function getPossibleGames(games) {
+	return games
 		.filter(game => {
 			const gameRounds = game.rounds.length
-			const filteredLength = game.rounds.filter((round) => round['red'] <= bag['red'] && round['green'] <= bag['green'] && round['blue'] <= bag['blue']).length
+			const filteredLength = game.rounds.filter(round => isPossible(round, bag)).length
 			return gameRounds === filteredLength
 		})
 		.reduce((total, current) => total + current.gameNum, 0)
 
-	return possibleGames
+}
+
+export function isPossible(round, bag) {
+	return round['red'] <= bag['red'] && round['green'] <= bag['green'] && round['blue'] <= bag['blue']
 }
 
 export function parseRoundToObject(roundData) {
