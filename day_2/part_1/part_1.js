@@ -29,13 +29,16 @@ export function getPossibleGames(games, bag) {
 			const filteredLength = game.rounds.filter(round => isRoundPossible(round, bag)).length
 			return gameRounds === filteredLength
 		})
-		.reduce((total, current) => total + current.gameNum, 0)
-
 }
 
 export function isRoundPossible(round, bag) {
-	if (round.length === 0) return false
-	return (round['red'] <= bag['red']) && (round['green'] <= bag['green']) && (round['blue'] <= bag['blue'])
+	if (JSON.stringify(round) === '{}') return false
+
+	const isRedPossible = round['red'] ? (round['red'] <= bag['red']) : true
+	const isGreenPossible = round['green'] ? (round['green'] <= bag['green']) : true
+	const isBluePossible = round['blue'] ? (round['blue'] <= bag['blue']) : true
+
+	return isRedPossible && isGreenPossible && isBluePossible
 }
 
 export function parseRoundToObject(roundData) {
