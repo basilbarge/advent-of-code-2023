@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { readFileSync } from 'node:fs'
 
-function solve(inputPath) {
+export default function solve(inputPath) {
 	const data = readFileSync(inputPath, 'utf8')
 	const input = data.split('\n').filter(n => n)
 
@@ -27,6 +27,4 @@ function solve(inputPath) {
 
 const inputPath = join('.', 'day_1', 'part_1', 'input.txt')
 
-console.log(solve(inputPath))
-
-export default solve
+if (process.env.NODE_ENV !== 'test') console.log(solve(inputPath))

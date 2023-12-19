@@ -78,4 +78,4 @@ export function parseNumbersWithinString(inputString, spelledNumbers) {
 
 const input = join('.', 'day_1', 'part_2', 'input.txt')
 
-console.log(solve(input))
+if (process.env.NODE_ENV !== 'test') console.log(solve(input))
