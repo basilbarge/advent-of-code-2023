@@ -1,5 +1,5 @@
 import { testInput } from './input'
-import { solve, parseRoundToObject } from './part_1'
+import { solve, parseRoundToObject, isRoundPossible } from './part_1'
 
 //test('Test input data', () => {
 //	expect(solve(testInput)).toBe(8)
@@ -29,5 +29,50 @@ describe('Testing parsing round data to objects', () => {
 		const round = ''
 
 		expect(parseRoundToObject(round)).toStrictEqual({})
+	})
+})
+
+describe('Testing isPossible', () => {
+
+	test('isPossible on empty rounds object returns false', () => {
+		const bag = {
+			'red': 15,
+			'blue': 15,
+			'green': 15
+		}
+		const round = {}
+
+		expect(isRoundPossible(round, bag)).toBe(false)
+	})
+
+
+	test('isPossible on possible round returns true', () => {
+		const bag = {
+			'red': 15,
+			'blue': 15,
+			'green': 15
+		}
+		const round = {
+			'red': 2,
+			'blue': 2,
+			'green': 2
+		}
+
+		expect(isRoundPossible(round, bag)).toBe(true)
+	})
+
+	test('isPossible on impossible round returns false', () => {
+		const bag = {
+			'red': 15,
+			'blue': 15,
+			'green': 15
+		}
+		const round = {
+			'red': 16,
+			'blue': 2,
+			'green': 2
+		}
+
+		expect(isRoundPossible(round, bag)).toBe(false)
 	})
 })
