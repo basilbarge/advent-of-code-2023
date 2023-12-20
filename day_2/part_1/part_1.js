@@ -19,7 +19,10 @@ export function solve(problemInput) {
 	})
 
 	const possibleGames = getPossibleGames(games, bag)
-	return possibleGames
+
+	return possibleGames.reduce((total, currentGame) => {
+		return total + currentGame.gameNum
+	}, 0)
 }
 
 export function getPossibleGames(games, bag) {
@@ -53,4 +56,4 @@ export function parseRoundToObject(roundData) {
 	}, {})
 }
 
-solve(input)
+if (process.env.NODE_ENV !== 'test') console.log(solve(input))

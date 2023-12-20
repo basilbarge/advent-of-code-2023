@@ -116,9 +116,14 @@ describe('Testing getPossibleGames', () => {
 
 		const rounds = [
 			{
-				'green': 1,
-				'blue': 1,
-				'red': 1
+				'green': 15,
+				'blue': 15,
+				'red': 15
+			},
+			{
+				'green': 5,
+				'blue': 9,
+				'red': 5
 			}
 		]
 		const games = [
@@ -129,5 +134,34 @@ describe('Testing getPossibleGames', () => {
 		]
 
 		expect(getPossibleGames(games, bag)).toStrictEqual(games)
+	})
+
+	test('With array of impossible games returns empty array', () => {
+		const bag = {
+			'red': 15,
+			'blue': 15,
+			'green': 15
+		}
+
+		const rounds = [
+			{
+				'green': 18,
+				'blue': 18,
+				'red': 18
+			},
+			{
+				'green': 20,
+				'blue': 24,
+				'red': 20
+			}
+		]
+		const games = [
+			{
+				gameNum: 1,
+				rounds: rounds
+			}
+		]
+
+		expect(getPossibleGames(games, bag)).toStrictEqual([])
 	})
 })
