@@ -1,9 +1,11 @@
 import { testInput } from './input'
 import { solve, parseRoundToObject, isRoundPossible, getPossibleGames } from './part_1'
 
-//test('Test input data', () => {
-//	expect(solve(testInput)).toBe(8)
-//})
+describe('Testing with test input data', () => {
+	test('Test input data', () => {
+		expect(solve(testInput)).toBe(8)
+	})
+})
 
 describe('Testing parsing round data to objects', () => {
 	test('parseRoundToObject with two colors', () => {
