@@ -1,59 +1,29 @@
-import { input } from '../input.js'
+import { input, testInput } from '../input.js';
 
+/**
+ *
+ * @param {string} problemInput
+ *
+ * @returns {number} Sum of mechanical part numbers
+ */
 export function solve(problemInput) {
-	const bag = {
-		'red': 12,
-		'green': 13,
-		'blue': 14
-	}
+  const symbols = '!@#$%^&*';
+  console.log(problemInput);
 
-	const games = problemInput.map((game) => {
-		const gameSplit = game.split('Game')[1].split(':')
-		const gameNumber = parseInt(gameSplit[0].trim())
-		const gameData = gameSplit[1].trim()
+  //Surrounding indices  of array[i][j]
+  //Left - array[i][j-1]
+  //Top Left - array[i-1][j-1]
+  //Top - array[i-1][j]
+  //Top Right - array[i+1][j+1]
+  //Right - array[i][j+1]
+  //Bottom Right - array[i+1][j+1]
+  //Bottom - array[i+1][j]
+  //Bottom Left - array [i+1][j-1]
 
-		return {
-			gameNum: gameNumber,
-			rounds: gameData.split(';').map((round) => parseRoundToObject(round))
-		}
-	})
-
-	const possibleGames = getPossibleGames(games, bag)
-
-	return possibleGames.reduce((total, currentGame) => {
-		return total + currentGame.gameNum
-	}, 0)
+  for (rowIndex in problemInput) {
+    for (columnIndex in row) {
+    }
+  }
 }
 
-export function getPossibleGames(games, bag) {
-	return games
-		.filter(game => {
-			const gameRounds = game.rounds.length
-			const filteredLength = game.rounds.filter(round => isRoundPossible(round, bag)).length
-			return gameRounds === filteredLength
-		})
-}
-
-export function isRoundPossible(round, bag) {
-	if (JSON.stringify(round) === '{}') return false
-
-	const isRedPossible = round['red'] ? (round['red'] <= bag['red']) : true
-	const isGreenPossible = round['green'] ? (round['green'] <= bag['green']) : true
-	const isBluePossible = round['blue'] ? (round['blue'] <= bag['blue']) : true
-
-	return isRedPossible && isGreenPossible && isBluePossible
-}
-
-export function parseRoundToObject(roundData) {
-	if (roundData === '') return {}
-
-	return roundData.trim().split(',').reduce((data, currentData) => {
-		const trimmedEntry = currentData.trim()
-		return {
-			...data,
-			[trimmedEntry.split(' ')[1]]: parseInt(trimmedEntry.split(' ')[0])
-		}
-	}, {})
-}
-
-if (process.env.NODE_ENV !== 'test') console.log(solve(input))
+if (process.env.NODE_ENV !== 'test') console.log(solve(testInput));
