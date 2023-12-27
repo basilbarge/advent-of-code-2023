@@ -14,15 +14,44 @@ export function solve(problemInput) {
 	//Left - array[i][j-1]
 	//Top Left - array[i-1][j-1]
 	//Top - array[i-1][j]
-	//Top Right - array[i+1][j+1]
+	//Top Right - array[i+1][j-1]
 	//Right - array[i][j+1]
 	//Bottom Right - array[i+1][j+1]
 	//Bottom - array[i+1][j]
-	//Bottom Left - array [i+1][j-1]
+	//Bottom Left - array [i-1][j+1]
 
-	for (rowIndex in problemInput) {
-		for (columnIndex in row) {
+	for (const rowIndex in problemInput) {
+		for (const columnIndex in problemInput[rowIndex]) {
+			const symbol = problemInput[rowIndex][columnIndex]
+			if (symbols.includes(symbol) && surroundedByNumber(problemInput, rowIndex, columnIndex)) {
+				problemInput[rowIndex][columnIndex] = 'T'
+			}
 		}
+	}
+
+	console.log(problemInput)
+}
+
+export function surroundedByNumber(array, rowIndex, columnIndex) {
+	if (rowIndex > 1) {
+		return parseInt(array[rowIndex][columnIndex - 1]) ||
+			parseInt(array[rowIndex - 1][columnIndex - 1]) ||
+			parseInt(array[rowIndex - 1][columnIndex]) ||
+			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
+			parseInt(array[rowIndex][columnIndex + 1]) ||
+			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
+			parseInt(array[rowIndex + 1][columnIndex]) ||
+			parseInt(array[rowIndex - 1][columnIndex + 1])
+	} else if (rowIndex < array.length) {
+		return parseInt(array[rowIndex][columnIndex - 1]) ||
+			parseInt(array[rowIndex - 1][columnIndex - 1]) ||
+			parseInt(array[rowIndex - 1][columnIndex]) ||
+			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
+			parseInt(array[rowIndex][columnIndex + 1]) ||
+			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
+			parseInt(array[rowIndex + 1][columnIndex]) ||
+			parseInt(array[rowIndex - 1][columnIndex + 1])
+
 	}
 }
 
