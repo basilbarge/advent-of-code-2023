@@ -34,57 +34,12 @@ export function solve(problemInput) {
 }
 
 export function surroundedByNumber(array, rowIndex, columnIndex) {
-	const maxRow = array.length
-	const maxColumn = array[rowIndex].length
+	const numbers = '12346789'
 
-	if (rowIndex === 0 && columnIndex === 0) {
-		return 
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex])
-	} else if (rowIndex === 0 && columnIndex > 0 && columnIndex < maxColumn) {
-		return parseInt(array[rowIndex][columnIndex - 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex])
-	} else if (rowIndex === 0 && columnIndex === maxColumn) {
-		return parseInt(array[rowIndex][columnIndex - 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex])
-	} else if (rowIndex > 0 && rowIndex < maxRow && columnIndex === 0) {
-		return
-			parseInt(array[rowIndex - 1][columnIndex]) ||
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex]) ||
-			parseInt(array[rowIndex - 1][columnIndex + 1])
-	} else if (rowIndex > 0 && rowIndex < maxRow && columnIndex > 0 && columnIndex < maxColumn) {
-		return parseInt(array[rowIndex][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex]) ||
-			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex + 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex]) ||
-			parseInt(array[rowIndex - 1][columnIndex + 1])
-	} else if (rowIndex > 0 && rowIndex < maxRow && columnIndex === maxColumn) {
-			return parseInt(array[rowIndex][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex]) ||
-			parseInt(array[rowIndex + 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex + 1][columnIndex])
-	} else if (rowIndex === maxRow && columnIndex > 0 && columnIndex < maxColumn) {
-		return parseInt(array[rowIndex][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex - 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex]) ||
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex + 1])
-	} else if (rowIndex === maxRow && columnIndex === 0) {
-		return 
-			parseInt(array[rowIndex - 1][columnIndex]) ||
-			parseInt(array[rowIndex][columnIndex + 1]) ||
-			parseInt(array[rowIndex - 1][columnIndex + 1])
+	if (array[rowIndex - 1][columnIndex - 1] && parseInt(array[rowIndex - 1][columnIndex - 1])) {
+
+	}	if (array[rowIndex - 1][columnIndex - 1] && parseInt(array[rowIndex - 1][columnIndex - 1])) {
+
 	}
 }
 
