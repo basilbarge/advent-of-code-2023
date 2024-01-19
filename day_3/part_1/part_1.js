@@ -8,7 +8,6 @@ import { input, testInput } from '../input.js';
  */
 export function solve(problemInput) {
 	const symbols = '!@#$%^&*';
-	console.log(problemInput);
 
 	//Surrounding indices  of array[i][j]
 	//Left - array[i][j-1]
@@ -19,28 +18,23 @@ export function solve(problemInput) {
 	//Bottom Right - array[i+1][j+1]
 	//Bottom - array[i+1][j]
 	//Bottom Left - array [i-1][j+1]
+	console.log(problemInput)
 
-	for (const rowIndex in problemInput) {
-		for (const columnIndex in problemInput[rowIndex]) {
-			const symbol = problemInput[rowIndex][columnIndex]
-			console.log(surroundedByNumber(problemInput, rowIndex, columnIndex))
-			if (symbols.includes(symbol) && surroundedByNumber(problemInput, rowIndex, columnIndex)) {
-				problemInput[rowIndex][columnIndex] = 'T'
+	for (const row of problemInput) {
+		for (const symbol of symbols) {
+			if (row.includes(symbol)) {
+				console.log(symbol)
 			}
 		}
 	}
 
-	console.log(problemInput)
 }
 
-export function surroundedByNumber(array, rowIndex, columnIndex) {
-	const numbers = '12346789'
-
-	if (array[rowIndex - 1][columnIndex - 1] && parseInt(array[rowIndex - 1][columnIndex - 1])) {
-
-	}	if (array[rowIndex - 1][columnIndex - 1] && parseInt(array[rowIndex - 1][columnIndex - 1])) {
+export function surroundedByNumber(data, index) {
+	if(data[index]) {
 
 	}
+
 }
 
 if (process.env.NODE_ENV !== 'test') console.log(solve(testInput));

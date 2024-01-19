@@ -12,9 +12,7 @@ function parseInputFileByLine(fileName) {
 
 	const input = readFileSync(inputPath, 'utf8').split('\n').filter(n => n)
 
-	const inputSplitByCharacter = input.map((line) => line.split(''))
-
-	return inputSplitByCharacter
+	return input
 }
 
 export const input = parseInputFileByLine('input.txt')
